@@ -1,0 +1,4 @@
+.leftPane {
+    width: calc(70% - (var(--container-left-right-gap) / 2));
+    margin-right: var(--container-left-right-gap);
+}

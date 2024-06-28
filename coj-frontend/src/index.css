@@ -1,0 +1,46 @@
+/* 清除浏览器默认样式 */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    /* ios 和 macos 下 用户页面最底部/顶部提示 */
+    /*overscroll-behavior: none;*/
+}
+
+/* 滚动条样式修改 */
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #e2e2e2;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+/* 全局变量 */
+:root {
+    /* 导航栏高度 */
+    --navbar-height: 50px;
+
+    /* container 容器内 left panel 和 right panel 之间的间距*/
+    --container-left-right-gap: 16px;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}

@@ -1,0 +1,3 @@
+.rightPane {
+    width: calc(30% - (var(--container-left-right-gap) / 2));
+}
