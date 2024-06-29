@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - var(--navbar-height));
+    border: 1px solid #ccc;
+}
+
+.leftPane {
+    background-color: #ffffff;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.rightPane {
+    background-color: #ffffff;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.resizer {
+    width: 8px;
+    cursor: ew-resize;
+    position: relative;
+    z-index: 1;
+}
+
+.resizer:after {
+    content: '';
+    position: absolute;
+    height: 32px;
+    border-radius: 2px;
+    background-color: #00000014;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 2px;
+    transition: all 0.2s ease-in-out;
+}
+

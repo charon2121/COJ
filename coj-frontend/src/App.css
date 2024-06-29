@@ -2,3 +2,10 @@
     height: 100vh;
     overflow-y: hidden;
 }
+
+@font-face {
+    font-family: 'MyMenlo';
+    src: url("./assets/fonts/Menlo-Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
