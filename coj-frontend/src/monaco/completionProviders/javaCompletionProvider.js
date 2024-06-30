@@ -33,6 +33,7 @@ const javaCompletionProvider = (monaco) => {
 
   return {
     provideCompletionItems: (model, position) => {
+      console.log("方法调用")
       const textUntilPosition = model.getValueInRange({
         startLineNumber: 1,
         startColumn: 1,
@@ -55,18 +56,16 @@ const javaCompletionProvider = (monaco) => {
             console.warn(`Syntax error at line ${line}:${column} - ${msg}`);
           },
         };
+
         parser.addErrorListener(errorListener);
         lexer.addErrorListener(errorListener);
 
         parser.buildParseTrees = true;
         const tree = parser.compilationUnit();
 
-        console.log("Parsed tree:", tree);
-
         const isArrayListInstance = checkIfArrayListInstance(tree, position);
 
         if (isArrayListInstance) {
-          console.log("ArrayList instance detected");
           return { suggestions: arrayListMethods };
         }
       } catch (error) {
