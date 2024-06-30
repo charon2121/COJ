@@ -52,3 +52,5 @@ monaco-editor 有三个不同的选择
 [monaco-react](https://github.com/suren-atoyan/monaco-react)
 和 [monaco-editor-react](https://github.com/react-monaco-editor/react-monaco-editor)
 
+本项目 monaco-editor 和 monaco-react 一起使用。 
+
