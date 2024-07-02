@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: coj-backend
+  datasource:
+    url: jdbc:mysql://localhost:3306/coj?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: tao072500
+    driver-class-name: com.mysql.cj.jdbc.Driver
