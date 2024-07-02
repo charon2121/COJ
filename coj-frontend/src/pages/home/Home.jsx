@@ -6,11 +6,12 @@ import Panel from "../../components/panel/Panel";
 import { Carousel } from "antd";
 
 function Home(props) {
+
   const contentStyle = {
     margin: 0,
-    height: "265px",
+    height: "350px",
     color: "#fff",
-    lineHeight: "265px",
+    lineHeight: "320px",
     textAlign: "center",
     background: "#364d79",
   };
