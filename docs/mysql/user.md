@@ -79,6 +79,27 @@ passed、submitted、liked... 表示用户的执行的操作类型，使用 acti
 
 对于用户操作影响到的对应，使用 affected_object_id 进行记录。
 
+### 表结构
+
+| 字段名             | 字段类型         | 字段含义                   |
+| ------------------ | ---------------- | -------------------------- |
+| user_activity_id   | BIGINT UNSIGNED  | 用户行为 ID                |
+| user_id            | BIGINT UNSIGNED  | 用户 ID                    |
+| action_type        | TINYINT UNSIGNED | 行为类型                   |
+| affected_object_id | BIGINT UNSIGNED  | 影响对象 ID                |
+| is_deleted         | TINYINT UNSIGNED | 是否删除 0:未删除 1:已删除 |
+| gmt_create         | DATETIME         | 创建时间                   |
+| gmt_modified       | DATETIME         | 修改时间                   |
+
+#### 行为类型枚举
+
+| 枚举值 | 枚举描述       | 影响对象 ID 对应的 对象 ID      |
+| ------ | -------------- | ------------------------------- |
+| 0      | 通过了某道题目 | affected_object_id = problem_id |
+| 1      | 尝试了某道题目 | affected_object_id = problem_id |
+| 2      | 给评论点赞     | affected_object_id = comment_id |
+| 3      | 给回复点赞     | affected_object_id = reply_id   |
+
 ### 建表语句
 
 ```sql
@@ -95,23 +116,7 @@ CREATE TABLE IF NOT EXISTS `user_activity` (
 )
 ```
 
-### 表结构
+## 题目表
 
-| 字段名             | 字段类型         | 字段含义                   |
-| ------------------ | ---------------- | -------------------------- |
-| user_activity_id   | BIGINT UNSIGNED  | 用户行为 ID                |
-| user_id            | BIGINT UNSIGNED  | 用户 ID                    |
-| action_type        | TINYINT UNSIGNED | 行为类型                   |
-| affected_object_id | BIGINT UNSIGNED  | 影响对象 ID                |
-| is_deleted         | TINYINT UNSIGNED | 是否删除 0:未删除 1:已删除 |
-| gmt_create         | DATETIME         | 创建时间                   |
-| gmt_modified       | DATETIME         | 修改时间                   |
+题目表和语言表是多对多的关系，
 
-行为类型枚举
-
-| 枚举值 | 枚举描述       | 影响对象 ID 对应的 对象 ID      |
-| ------ | -------------- | ------------------------------- |
-| 0      | 通过了某道题目 | affected_object_id = problem_id |
-| 1      | 尝试了某道题目 | affected_object_id = problem_id |
-| 2      | 给评论点赞     | affected_object_id = comment_id |
-| 3      | 给回复点赞     | affected_object_id = reply_id   |
