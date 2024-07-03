@@ -113,7 +113,7 @@ function Problem(props) {
         }}
       >
         <MonacoEditor
-          height="90vh"
+          height="500px"
           language="java"
           value="// hello world"
           onMount={handleEditorDidMount}

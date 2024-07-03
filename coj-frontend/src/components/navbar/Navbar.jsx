@@ -39,7 +39,7 @@ function Navbar(props) {
           style={{ lineHeight: "var(--navbar-height)" }}
         ></Menu>
       </div>
-      <div style={{ display: "flex", gap: "16px" }}>
+      <div style={{ display: "flex", gap: "24px" }}>
         <BellOutlined onClick={showDrawer} />
         <Popover
           placement="bottomRight"
