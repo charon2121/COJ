@@ -161,3 +161,5 @@ CREATE TABLE `problem` (
     `accepted_count` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '通过次数',
 )
 ```
+
+测试
