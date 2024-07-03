@@ -35,7 +35,10 @@
 ### 建表语句
 
 ```sql
-CREATE TABLE IF NOT EXISTS `user` (
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
     `user_id`  BIGINT UNSIGNED NOT NULL COMMENT '用户ID',
     `username` VARCHAR(32) NOT NULL COMMENT '用户名',
     `nickname` VARCHAR(64) NOT NULL DEFAULT '' COMMENT '用户昵称昵称',
@@ -64,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `user` (
     PRIMARY KEY (`user_id`),
     UNIQUE KEY `UNIQUE_USERNANE` (`username`),
     UNIQUE KEY `UNIQUE_EMAIL` (`email`)
-)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 ```
 
 ## user_activity 表
@@ -103,7 +106,10 @@ passed、submitted、liked... 表示用户的执行的操作类型，使用 acti
 ### 建表语句
 
 ```sql
-CREATE TABLE IF NOT EXISTS `user_activity` (
+
+DROP TABLE IF EXISTS `user_activity`;
+
+CREATE TABLE `user_activity` (
     `user_activity_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户行为ID',
     `user_id` BIGINT UNSIGNED NOT NULL COMMENT '用户ID',
     `action_type` TINYINT UNSIGNED NOT NULL COMMENT '行为类型',
@@ -113,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `user_activity` (
     `gmt_modified` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
     PRIMARY KEY (`user_activity_id`),
     INDEX `index_user_action` (`user_id`, `action_type`)
-)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户行为表';
 ```
 
 ## 题目表
@@ -122,3 +128,36 @@ CREATE TABLE IF NOT EXISTS `user_activity` (
 
 修改部分内容。
 
+### 表格
+
+| 字段名         | 字段类型         | 字段含义                                  |
+| -------------- | ---------------- | ----------------------------------------- |
+| problem_id     | INT UNSIGNED     | 主键，题目 ID                             |
+| title          | VARCHAR(255)     | 题目标题                                  |
+| slug           | VARCHAR(512)     | 题目唯一标识，用于生成友好链接和反爬      |
+| description    | TEXT             | 题目描述，输入输出描述                    |
+| is_spj         | TINYINT UNSIGNED | 是否为 spj 题目, 0：不是，1：是           |
+| mode           | TINYINT UNSIGNED | 题目类型，0：ACM 模式，1：核心代码模式    |
+| difficulty     | TINYINT UNSIGNED | 题目难度，0：简单，1：中等，2：困难       |
+| status         | TINYINT UNSIGNED | 题目状态，0：内测中，1：已发布，2：已废弃 |
+| scene          | TINYINT UNSIGNED | 题目场景，0：全站使用，其余场景自定义     |
+| scene_id       | INT UNSIGNED     | 题目场景 ID，题目出现的场景 ID            |
+| submit_count   | INT UNSIGNED     | 题目提交次数                              |
+| accepted_count | INT UNSIGNED     | 题目通过次数                              |
+
+### 建表语句
+
+```sql
+DROP TABLE IF EXISTS `problem`;
+
+CREATE TABLE `problem` (
+    `problem_id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '题目ID',
+    `title` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '题目标题',
+    `slug` VARCHAR(512) NOT NULL DEFAULT '' COMMENT '友好地址',
+    `description` TEXT NOT NULL DEFAULT '' COMMENT '题目描述',
+    `is_spj` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否为SPJ',
+    `difficulty` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '题目难度',
+    `submit_count` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '提交次数',
+    `accepted_count` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '通过次数',
+)
+```
