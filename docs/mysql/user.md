@@ -21,7 +21,7 @@
 | avatar_url          | VARCHAR(255)     | 用户头像地址                                                         |
 | permission          | VARCHAR(64)      | 用户权限字符串                                                       |
 | status              | TINYINT UNSIGNED | 用户状态 0:正常 1:禁用                                               |
-| perference_language | INT UNSIGNED     | 用户偏好语言，外键，对应了 language 表的 id                          |
+| preference_language | INT UNSIGNED     | 用户偏好语言，外键，对应了 language 表的 id                          |
 | submit_count        | INT UNSIGNED     | 提交题目次数                                                         |
 | solved_count        | INT UNSIGNED     | 解决题目数量                                                         |
 | register_time       | DATETIME         | 注册时间                                                             |
