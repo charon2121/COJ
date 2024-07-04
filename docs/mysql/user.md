@@ -72,6 +72,8 @@ CREATE TABLE `user` (
 
 ## user_activity 表
 
+特征，改动率极低，查询率极高，只记录用于用户的。
+
 设计 user_activity 的目标是记录用户在系统上特定的操作。具体来说是记录用户执行的操作的类型以及受到这些操作影响的对象。
 
 例如，用户通过了某道算法题，则应该记录为 user passed question。用户提交但是未通过某道算法题，则应该记录为 user attempted question。用户给某个评论点赞，则应该记录为 user liked comment。
@@ -128,22 +130,50 @@ CREATE TABLE `user_activity` (
 
 修改部分内容。
 
+既然要做 OJ，就应该做一个功能完善的。
+
+完善应该从那些方面体现。
+
+1. 支持多种语言，可扩展。
+2. 支持两种模式，自己处理输入输出的 ACM 模式和 LeetCode 那种核心代码模式（OI）不用自己处理输入输出。
+3. 对于如何判断题目的正确性，其实只有两个大的类别，一是通过比对用户输出和正确输出，二是通过执行一段特殊的代码来判断。（spj）
+
+在数据库设计阶段，比较麻烦的是两种ACM 模式和 LeetCode 那种核心代码模式的题目的处理，是不是应该放到同一张表里。
+
+一般来说，核心代码模式由于没有输入输出，题目的所有的描述都是放在 description 字段里。
+
+而 ACM 模式，题目的描述放在 description 字段里，输入输出还存在描述，需要放在 input_description、output_description（hustoj，hoj，包括 鱼皮 的 OJ 都是这么设计的）。
+
+并且这三个 OJ 都只做了 ACM 模式的 OJ。如果按照 ACM 模式的设计，那么核心代码模式的记录就会多出来两个空白字段。
+
+这还不是最严重的。在 ACM 模式下，题目还存在输入示例，输出示例，有些题目还存在好几组输入示例和输出示例，输入输出示例往往还伴随着解释。
+
+即：
+
+ACM 模式 的 description 和 input_description、output_description 统一划分到 description 字段。
+
+ACM 模式的 description 划分完毕了之后。
+
+
+
 ### 表格
 
-| 字段名         | 字段类型         | 字段含义                                  |
-| -------------- | ---------------- | ----------------------------------------- |
-| problem_id     | INT UNSIGNED     | 主键，题目 ID                             |
-| title          | VARCHAR(255)     | 题目标题                                  |
-| slug           | VARCHAR(512)     | 题目唯一标识，用于生成友好链接和反爬      |
-| description    | TEXT             | 题目描述，输入输出描述                    |
-| is_spj         | TINYINT UNSIGNED | 是否为 spj 题目, 0：不是，1：是           |
-| mode           | TINYINT UNSIGNED | 题目类型，0：ACM 模式，1：核心代码模式    |
-| difficulty     | TINYINT UNSIGNED | 题目难度，0：简单，1：中等，2：困难       |
-| status         | TINYINT UNSIGNED | 题目状态，0：内测中，1：已发布，2：已废弃 |
-| scene          | TINYINT UNSIGNED | 题目场景，0：全站使用，其余场景自定义     |
-| scene_id       | INT UNSIGNED     | 题目场景 ID，题目出现的场景 ID            |
-| submit_count   | INT UNSIGNED     | 题目提交次数                              |
-| accepted_count | INT UNSIGNED     | 题目通过次数                              |
+| 字段名         | 字段类型         | 字段含义                                             |
+| -------------- | ---------------- | ---------------------------------------------------- |
+| problem_id     | INT UNSIGNED     | 主键，题目 ID                                        |
+| title          | VARCHAR(255)     | 题目标题                                             |
+| slug           | VARCHAR(512)     | 题目唯一标识，用于生成友好链接和反爬                 |
+| description    | TEXT             | 题目描述，输入输出描述                               |
+| is_spj         | TINYINT UNSIGNED | 是否为 spj 题目, 0：不是，1：是                      |
+| mode           | TINYINT UNSIGNED | 题目类型，0：ACM 模式，1：核心代码模式               |
+| difficulty     | TINYINT UNSIGNED | 题目难度，0：入门，1：简单，2：中等，3：困难，4:极难 |
+| status         | TINYINT UNSIGNED | 题目状态，0：内测中，1：已发布，2：已废弃            |
+| scene          | TINYINT UNSIGNED | 题目场景，0：全站使用，其余场景自定义                |
+| scene_id       | INT UNSIGNED     | 题目场景 ID，题目出现的场景 ID                       |
+| tags           | VARCHAR(512)     | 题目标签，字符串数组，存储标签表中的 ID              |
+| hints          | TEXT             | 题目提示，字符串数组，用于存储题目的提示             |
+| submit_count   | INT UNSIGNED     | 题目提交次数                                         |
+| accepted_count | INT UNSIGNED     | 题目通过次数                                         |
 
 ### 建表语句
 
