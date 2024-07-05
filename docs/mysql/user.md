@@ -267,6 +267,25 @@ CREATE TABLE `problem` (
 | gmt_create    | DATETIME         | 创建时间                               |
 | gmt_modified  | DATETIME         | 修改时间                               |
 
+### 建表语句
+
+```sql
+DROP TABLE IF EXISTS `problem_sample_io`;
+
+CREATE TABLE `problem_sample_io` (
+    `problem_sample_io_id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键，样例输入输出 ID',
+    `problem_id` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '题目 ID',
+    `sample_input` TEXT NOT NULL DEFAULT '' COMMENT '样例输入',
+    `sample_output` TEXT NOT NULL DEFAULT '' COMMENT '样例输出',
+    `explanation` TEXT NOT NULL DEFAULT '' COMMENT '样例解释',
+    `is_deleted` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否删除，枚举值，0：未删除，1：已删除',
+    `gmt_create` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `gmt_modified` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+    PRIMARY KEY (`problem_sample_io_id`),
+    INDEX `idx_problem_id` (`problem_id`)
+)
+```
+
 ## 语言表
 
 ### 表格
