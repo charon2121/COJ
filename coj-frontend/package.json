@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^14.5.2",
     "antd": "^5.18.3",
     "antlr4": "^4.13.1-patch-1",
+    "axios": "^1.7.2",
     "eslint": "^8.56.0",
     "monaco-editor": "^0.50.0",
     "monaco-languageclient": "^8.6.0",
