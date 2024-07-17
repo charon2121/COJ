@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coj.cojbackend.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.coj.cojbackend.model.entity.User">
+            <id property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="username" column="username" jdbcType="CHAR"/>
+            <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+            <result property="gender" column="gender" jdbcType="TINYINT"/>
+            <result property="birthday" column="birthday" jdbcType="DATE"/>
+            <result property="introduction" column="introduction" jdbcType="VARCHAR"/>
+            <result property="passwordHash" column="password_hash" jdbcType="VARCHAR"/>
+            <result property="school" column="school" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="github" column="github" jdbcType="VARCHAR"/>
+            <result property="blog" column="blog" jdbcType="VARCHAR"/>
+            <result property="avatarUrl" column="avatar_url" jdbcType="VARCHAR"/>
+            <result property="permission" column="permission" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="preferenceLanguage" column="preference_language" jdbcType="INTEGER"/>
+            <result property="submitCount" column="submit_count" jdbcType="INTEGER"/>
+            <result property="solvedCount" column="solved_count" jdbcType="INTEGER"/>
+            <result property="registerTime" column="register_time" jdbcType="TIMESTAMP"/>
+            <result property="lastLogin" column="last_login" jdbcType="TIMESTAMP"/>
+            <result property="lastLoginIp" column="last_login_ip" jdbcType="VARCHAR"/>
+            <result property="lastOnline" column="last_online" jdbcType="TIMESTAMP"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+            <result property="gmtCreate" column="gmt_create" jdbcType="TIMESTAMP"/>
+            <result property="gmtModified" column="gmt_modified" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        user_id,username,nickname,
+        gender,birthday,introduction,
+        password_hash,school,phone,
+        email,github,blog,
+        avatar_url,permission,status,
+        preference_language,submit_count,solved_count,
+        register_time,last_login,last_login_ip,
+        last_online,is_deleted,gmt_create,
+        gmt_modified
+    </sql>
+</mapper>
