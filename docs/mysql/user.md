@@ -54,7 +54,7 @@ CREATE TABLE `user` (
     `avatar_url` VARCHAR(255) DEFAULT NULL COMMENT '用户头像地址',
     `permission` VARCHAR(32) NOT NULL COMMENT '用户权限字符串',
     `status` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户状态 0:正常 1:禁用',
-    `perference_language` INT UNSIGNED DEFAULT NULL COMMENT '用户偏好语言',
+    `preference_language` INT UNSIGNED DEFAULT NULL COMMENT '用户偏好语言',
     `submit_count` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '提交题目次数',
     `solved_count` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '解决题目数量',
     `register_time` DATETIME DEFAULT NULL COMMENT '注册时间',
@@ -65,7 +65,7 @@ CREATE TABLE `user` (
     `gmt_create` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `gmt_modified` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
     PRIMARY KEY (`user_id`),
-    UNIQUE KEY `UNIQUE_USERNANE` (`username`),
+    UNIQUE KEY `UNIQUE_USERNAME` (`username`),
     UNIQUE KEY `UNIQUE_EMAIL` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 ```
