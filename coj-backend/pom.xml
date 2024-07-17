@@ -81,6 +81,13 @@
             <artifactId>jackson-core</artifactId>
             <version>2.17.1</version>
         </dependency>
+        <!-- Jackson 在将java8 的 LocalDateTime 属性转为字符串时 -->
+        <!-- 需要本模块支持-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.12.3</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -107,6 +114,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!-- 在测试中保留安全配置， -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <!-- jwt 支持-->
         <dependency>

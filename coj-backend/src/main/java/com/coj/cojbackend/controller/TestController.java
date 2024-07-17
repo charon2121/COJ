@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api")
 public class TestController {
     @GetMapping("/health")
     public String health() {
