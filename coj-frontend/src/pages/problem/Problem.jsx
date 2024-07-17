@@ -1,11 +1,12 @@
+/** @jsxImportSource @emotion/react */
 import React, { useRef, useState } from "react";
 import styles from "./Problem.module.css";
 import MonacoEditor from "@monaco-editor/react";
 import { Tabs } from "antd";
 import { language as javaLanguage } from "monaco-editor/dev/vs/basic-languages/java/java";
+import { css } from "@emotion/react";
 
-
-function Problem(props) {
+function Problem(prop) {
   const resizerRef = useRef(null);
 
   const [leftWidth, setLeftWidth] = useState("calc(50% - 4px)");
@@ -37,6 +38,11 @@ function Problem(props) {
     console.log(key);
   };
 
+  const style = css`
+    color: red;
+    font-size: 18px;
+  `;
+
   const items = [
     {
       key: "1",
@@ -51,7 +57,7 @@ function Problem(props) {
     {
       key: "3",
       label: "Tab 3",
-      children: "Content of Tab Pane 3",
+      children: <div css={style}>Content of Tab Pane 3</div>,
     },
   ];
 
