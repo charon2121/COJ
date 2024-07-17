@@ -4,33 +4,33 @@
 
 ### 表结构
 
-| 字段名              | 字段类型         | 字段含义                                                             |
-| ------------------- | ---------------- | -------------------------------------------------------------------- |
-| user_id             | BIGINT UNSIGNED  | 用户 ID，内部使用，对外不可见；不重复、不能修改、不为空，使用雪花 ID |
-| username            | VARCHAR(32)      | 用户名，对外展示，系统生成；不重复、不能修改、不为空                 |
-| nickname            | VARCHAR(64)      | 用户昵称，对外展示使用，系统自动生成，用户可修改，不可空             |
-| gender              | TINYINT UNSIGNED | 性别 0:保密 1:男 2:女                                                |
-| birthday            | DATE             | 生日                                                                 |
-| introduction        | VARCHAR(255)     | 个人简介                                                             |
-| password_hash       | VARCHAR(255)     | 加密后的用户密码                                                     |
-| school              | VARCHAR(32)      | 学校                                                                 |
-| phone               | VARCHAR(32)      | 用户手机号                                                           |
-| email               | VARCHAR(128)     | 用户邮箱                                                             |
-| github              | VARCHAR(128)     | github地址                                                           |
-| blog                | VARCHAR(255)     | 博客地址                                                             |
-| avatar_url          | VARCHAR(255)     | 用户头像地址                                                         |
-| permission          | VARCHAR(64)      | 用户权限字符串                                                       |
-| status              | TINYINT UNSIGNED | 用户状态 0:正常 1:禁用                                               |
-| preference_language | INT UNSIGNED     | 用户偏好语言，外键，对应了 language 表的 id                          |
-| submit_count        | INT UNSIGNED     | 提交题目次数                                                         |
-| solved_count        | INT UNSIGNED     | 解决题目数量                                                         |
-| register_time       | DATETIME         | 注册时间                                                             |
-| last_login          | DATETIME         | 最后登录时间                                                         |
-| last_login_ip       | VARCHAR(64)      | 最后登录IP                                                           |
-| last_online         | DATETIME         | 最后在线时间                                                         |
-| is_deleted          | TINYINT UNSIGNED | 是否删除 0:未删除 1:已删除                                           |
-| gmt_create          | DATETIME         | 创建时间                                                             |
-| gmt_modified        | DATETIME         | 修改时间                                                             |
+| 字段名              | 字段类型         | 是否为空 | 字段含义                                                 |
+| ------------------- | ---------------- | -------- | -------------------------------------------------------- |
+| user_id             | BIGINT UNSIGNED  | 否       | 用户 ID，内部使用，对外不可见；使用雪花 ID               |
+| username            | CHAR(32)         | 否       | 用户名，对外展示，系统生成；不重复、不能修改、不为空     |
+| nickname            | VARCHAR(16)      | 否       | 用户昵称，对外展示使用，系统自动生成，用户可修改，不可空 |
+| gender              | TINYINT UNSIGNED | 否       | 性别 0:保密 1:男 2:女                                    |
+| birthday            | DATE             |          | 生日                                                     |
+| introduction        | VARCHAR(255)     |          | 个人简介                                                 |
+| password_hash       | VARCHAR(255)     | 否       | 加密后的用户密码                                         |
+| school              | VARCHAR(32)      |          | 学校                                                     |
+| phone               | VARCHAR(16)      |          | 用户手机号                                               |
+| email               | VARCHAR(128)     |          | 用户邮箱                                                 |
+| github              | VARCHAR(128)     |          | github地址                                               |
+| blog                | VARCHAR(255)     |          | 博客地址                                                 |
+| avatar_url          | VARCHAR(255)     |          | 用户头像地址                                             |
+| permission          | VARCHAR(64)      | 否       | 用户权限字符串                                           |
+| status              | TINYINT UNSIGNED | 否       | 用户状态 0:正常 1:禁用                                   |
+| preference_language | INT UNSIGNED     |          | 用户偏好语言，外键，对应了 language 表的 id              |
+| submit_count        | INT UNSIGNED     | 否       | 提交题目次数                                             |
+| solved_count        | INT UNSIGNED     | 否       | 解决题目数量                                             |
+| register_time       | DATETIME         |          | 注册时间                                                 |
+| last_login          | DATETIME         |          | 最后登录时间                                             |
+| last_login_ip       | VARCHAR(64)      |          | 最后登录IP                                               |
+| last_online         | DATETIME         |          | 最后在线时间                                             |
+| is_deleted          | TINYINT UNSIGNED | 否       | 是否删除 0:未删除 1:已删除                               |
+| gmt_create          | DATETIME         | 否       | 创建时间                                                 |
+| gmt_modified        | DATETIME         | 否       | 修改时间                                                 |
 
 ### 建表语句
 
@@ -40,19 +40,19 @@ DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
     `user_id`  BIGINT UNSIGNED NOT NULL COMMENT '用户ID',
-    `username` VARCHAR(32) NOT NULL COMMENT '用户名',
-    `nickname` VARCHAR(64) NOT NULL DEFAULT '' COMMENT '用户昵称昵称',
+    `username` CHAR(32) NOT NULL COMMENT '用户名',
+    `nickname` VARCHAR(16) NOT NULL DEFAULT '' COMMENT '用户昵称昵称',
     `gender` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '性别 0:保密 1:男 2:女',
     `birthday` DATE DEFAULT NULL COMMENT '生日',
     `introduction` VARCHAR(255) DEFAULT NULL COMMENT '个人简介',
     `password_hash` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '加密后的用户密码',
     `school` VARCHAR(32) DEFAULT NULL COMMENT '学校',
-    `phone` VARCHAR(32) DEFAULT NULL COMMENT '用户手机号',
+    `phone` VARCHAR(16) DEFAULT NULL COMMENT '用户手机号',
     `email` VARCHAR(128) DEFAULT NULL COMMENT '用户邮箱',
     `github` VARCHAR(128) DEFAULT NULL COMMENT 'github地址',
-    `blog` VARCHAR(255) DEFAULT NULL COMMENT '博客地址',
+    `blog` VARCHAR(255) DEFAULT NULL COMMENT '个人博客地址',
     `avatar_url` VARCHAR(255) DEFAULT NULL COMMENT '用户头像地址',
-    `permission` VARCHAR(64) DEFAULT NULL COMMENT '用户权限字符串',
+    `permission` VARCHAR(32) NOT NULL COMMENT '用户权限字符串',
     `status` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户状态 0:正常 1:禁用',
     `perference_language` INT UNSIGNED DEFAULT NULL COMMENT '用户偏好语言',
     `submit_count` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '提交题目次数',
@@ -86,15 +86,15 @@ passed、submitted、liked... 表示用户的执行的操作类型，使用 acti
 
 ### 表结构
 
-| 字段名             | 字段类型         | 字段含义                   |
-| ------------------ | ---------------- | -------------------------- |
-| user_activity_id   | BIGINT UNSIGNED  | 用户行为 ID                |
-| user_id            | BIGINT UNSIGNED  | 用户 ID                    |
-| action_type        | TINYINT UNSIGNED | 行为类型                   |
-| affected_object_id | BIGINT UNSIGNED  | 影响对象 ID                |
-| is_deleted         | TINYINT UNSIGNED | 是否删除 0:未删除 1:已删除 |
-| gmt_create         | DATETIME         | 创建时间                   |
-| gmt_modified       | DATETIME         | 修改时间                   |
+| 字段名             | 字段类型         | 是否允许为空 | 字段含义                   |
+| ------------------ | ---------------- | ------------ | -------------------------- |
+| user_activity_id   | BIGINT UNSIGNED  | 是           | 用户行为 ID                |
+| user_id            | BIGINT UNSIGNED  | 是           | 用户 ID                    |
+| action_type        | TINYINT UNSIGNED | 是           | 行为类型                   |
+| affected_object_id | BIGINT UNSIGNED  | 是           | 影响对象 ID                |
+| is_deleted         | TINYINT UNSIGNED | 是           | 是否删除 0:未删除 1:已删除 |
+| gmt_create         | DATETIME         | 是           | 创建时间                   |
+| gmt_modified       | DATETIME         | 是           | 修改时间                   |
 
 #### 行为类型枚举
 
