@@ -1,0 +1,21 @@
+.ant-tabs-nav {
+    width: 100%;
+    display: flex;
+}
+
+.ant-tabs-tab {
+    flex: 1;
+    text-align: center;
+}
+
+.ant-tabs-tab + .ant-tabs-tab {
+    margin-left: 0 !important;
+}
+
+.ant-tabs-card .ant-tabs-content-holder {
+    width: 100%;
+}
+
+.ant-tabs-card .ant-tabs-content {
+    width: 100%;
+}

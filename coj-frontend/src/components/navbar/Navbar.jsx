@@ -17,6 +17,9 @@ function Navbar() {
     setCurrent(e.key);
   };
 
+  /**
+   * 管理抽屉状态
+   */
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -26,6 +29,11 @@ function Navbar() {
   const onClose = () => {
     setOpen(false);
   };
+
+  /**
+   * 管理登录的模态框的状态
+   */
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
 
   return (
     <nav className={styles.navbar}>
@@ -66,10 +74,13 @@ function Navbar() {
       )}
       {!isLogin && (
         <Flex>
-          <div css={loginFont}>
+          <div css={loginFont} onClick={() => setLoginModalOpen(true)}>
             登录<span> / </span>注册
           </div>
-          <LoginModal open={false} />
+          <LoginModal
+            open={loginModalOpen}
+            onCancel={() => setLoginModalOpen(false)}
+          />
         </Flex>
       )}
     </nav>
