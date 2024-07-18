@@ -1,11 +1,13 @@
+/** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
-import { Avatar, Drawer, Menu, Popover } from "antd";
+import { Avatar, Drawer, Flex, Menu, Popover } from "antd";
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { BellOutlined } from "@ant-design/icons";
 
 function Navbar(props) {
   const [current, setCurrent] = useState("home");
+
   const items = [
     {
       label: <NavLink to={"/home/"}>首页</NavLink>,
@@ -16,6 +18,7 @@ function Navbar(props) {
       key: "problemset",
     },
   ];
+
   const clickHandle = (e) => {
     setCurrent(e.key);
   };
@@ -39,7 +42,7 @@ function Navbar(props) {
           style={{ lineHeight: "var(--navbar-height)" }}
         ></Menu>
       </div>
-      <div style={{ display: "flex", gap: "24px" }}>
+      <Flex gap={24}>
         <BellOutlined onClick={showDrawer} />
         <Popover
           placement="bottomRight"
@@ -51,7 +54,7 @@ function Navbar(props) {
           <Avatar>U</Avatar>
         </Popover>
         <Drawer
-          title="Basic Drawer"
+          title="消息中心"
           onClose={onClose}
           open={open}
           mask={false}
@@ -62,7 +65,7 @@ function Navbar(props) {
           <p>Some contents...</p>
           <p>Some contents...</p>
         </Drawer>
-      </div>
+      </Flex>
     </nav>
   );
 }
