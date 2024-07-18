@@ -3,6 +3,8 @@ package com.coj.cojbackend.model.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -165,6 +167,7 @@ public class User implements Serializable {
     @TableField(value = "gmt_modified")
     private LocalDateTime gmtModified;
 
+    @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -241,37 +244,35 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", userId=").append(userId);
-        sb.append(", username=").append(username);
-        sb.append(", nickname=").append(nickname);
-        sb.append(", gender=").append(gender);
-        sb.append(", birthday=").append(birthday);
-        sb.append(", introduction=").append(introduction);
-        sb.append(", passwordHash=").append(passwordHash);
-        sb.append(", school=").append(school);
-        sb.append(", phone=").append(phone);
-        sb.append(", email=").append(email);
-        sb.append(", github=").append(github);
-        sb.append(", blog=").append(blog);
-        sb.append(", avatarUrl=").append(avatarUrl);
-        sb.append(", permission=").append(permission);
-        sb.append(", status=").append(status);
-        sb.append(", preferenceLanguage=").append(preferenceLanguage);
-        sb.append(", submitCount=").append(submitCount);
-        sb.append(", solvedCount=").append(solvedCount);
-        sb.append(", registerTime=").append(registerTime);
-        sb.append(", lastLogin=").append(lastLogin);
-        sb.append(", lastLoginIp=").append(lastLoginIp);
-        sb.append(", lastOnline=").append(lastOnline);
-        sb.append(", isDeleted=").append(isDeleted);
-        sb.append(", gmtCreate=").append(gmtCreate);
-        sb.append(", gmtModified=").append(gmtModified);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return getClass().getSimpleName() +
+                " [" +
+                "Hash = " + hashCode() +
+                ", userId=" + userId +
+                ", username=" + username +
+                ", nickname=" + nickname +
+                ", gender=" + gender +
+                ", birthday=" + birthday +
+                ", introduction=" + introduction +
+                ", passwordHash=" + passwordHash +
+                ", school=" + school +
+                ", phone=" + phone +
+                ", email=" + email +
+                ", github=" + github +
+                ", blog=" + blog +
+                ", avatarUrl=" + avatarUrl +
+                ", permission=" + permission +
+                ", status=" + status +
+                ", preferenceLanguage=" + preferenceLanguage +
+                ", submitCount=" + submitCount +
+                ", solvedCount=" + solvedCount +
+                ", registerTime=" + registerTime +
+                ", lastLogin=" + lastLogin +
+                ", lastLoginIp=" + lastLoginIp +
+                ", lastOnline=" + lastOnline +
+                ", isDeleted=" + isDeleted +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                ", serialVersionUID=" + serialVersionUID +
+                "]";
     }
 }
