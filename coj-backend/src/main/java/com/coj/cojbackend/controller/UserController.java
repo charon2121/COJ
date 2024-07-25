@@ -1,14 +1,18 @@
 package com.coj.cojbackend.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.coj.cojbackend.annotation.HandleValidationErrors;
 import com.coj.cojbackend.model.entity.User;
-import com.coj.cojbackend.model.request.user.loginRequest;
+import com.coj.cojbackend.model.request.user.LoginRequest;
+import com.coj.cojbackend.model.response.BaseResponse;
 import com.coj.cojbackend.service.user.UserService;
+import com.coj.cojbackend.utils.ResponseUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,18 +46,17 @@ public class UserController {
         return jsonString;
     }
 
-    /**
-     * 用户登录接口
-     *
-     * @param loginRequest
-     * @return
-     */
+    @HandleValidationErrors
     @PostMapping("/login")
-    public String authenticateUser(@Valid @RequestBody loginRequest loginRequest, BindingResult bindingResult) {
+    public ResponseEntity<BaseResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
 
+        String username = loginRequest.getUsername();
 
+        User user = userService.getUserByUsername(username);
 
+        System.out.println(user);
 
-        return "user";
+//        return ResponseUtil.success(user);
+        return null;
     }
 }

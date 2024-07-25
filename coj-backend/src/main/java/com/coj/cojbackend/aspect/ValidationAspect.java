@@ -1,6 +1,6 @@
 package com.coj.cojbackend.aspect;
 
-
+import com.coj.cojbackend.utils.ResponseUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -14,10 +14,9 @@ public class ValidationAspect {
     public Object handleValidationErrors(ProceedingJoinPoint joinPoint, BindingResult bindingResult) throws Throwable {
 
         if (bindingResult.hasErrors()) {
-
+            return ResponseUtil.validationError(bindingResult);
         }
 
         return joinPoint.proceed();
     }
-
 }

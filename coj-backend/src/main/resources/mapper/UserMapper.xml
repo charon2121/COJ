@@ -43,4 +43,5 @@
         last_online,is_deleted,gmt_create,
         gmt_modified
     </sql>
+
 </mapper>

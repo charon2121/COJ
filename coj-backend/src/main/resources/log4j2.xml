@@ -1,27 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Properties>
         <!-- 日志文件存储路径 -->
         <Property name="LOG_PATH">logs</Property>
+        <!-- 日志文件最大大小 -->
+        <Property name="LOG_FILE_SIZE">10MB</Property>
+        <!-- 保留的日志文件个数 -->
+        <Property name="LOG_FILE_COUNT">30</Property>
     </Properties>
 
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} - %msg%n"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
         <RollingFile name="File" fileName="${LOG_PATH}/app.log" filePattern="${LOG_PATH}/app-%d{yyyy-MM-dd}.log">
             <PatternLayout>
-                <Pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</Pattern>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Pattern>
             </PatternLayout>
-            <TimeBasedTriggeringPolicy/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="${LOG_FILE_SIZE}"/>
+            </Policies>
+            <DefaultRolloverStrategy max="${LOG_FILE_COUNT}"/>
         </RollingFile>
     </Appenders>
 
     <Loggers>
-        <Logger name="com.example" level="debug" additivity="false">
+        <Logger name="com.coj.cojbackend" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="File"/>
         </Logger>
-        <Root level="info">
+        <Root level="off">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="File"/>
         </Root>

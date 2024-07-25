@@ -11,5 +11,4 @@ public class CojBackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(CojBackendApplication.class, args);
     }
-
 }

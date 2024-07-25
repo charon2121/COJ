@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class loginRequest {
+public class LoginRequest {
 
     @NotNull(message = "username cannot be null")
     @NotEmpty(message = "username cannot be empty")
