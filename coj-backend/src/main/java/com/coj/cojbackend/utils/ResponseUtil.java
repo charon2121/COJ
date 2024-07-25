@@ -23,7 +23,7 @@ public class ResponseUtil {
      * @param <T>  数据的类型。
      * @return 包含成功响应的ResponseEntity。
      */
-    public static <T> ResponseEntity<ApiResponse<T>> success(T data) {
+    public static <T> ResponseEntity<BaseResponse> success(T data) {
         ApiResponse<T> response = new ApiResponse<>(ResponseCode.SUCCESS, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -35,7 +35,7 @@ public class ResponseUtil {
      * @param <T>     数据的类型。
      * @return 包含成功响应的ResponseEntity。
      */
-    public static <T> ResponseEntity<ApiResponse<T>> success(String message) {
+    public static <T> ResponseEntity<BaseResponse> success(String message) {
         ApiResponse<T> response = new ApiResponse<>(ResponseCode.SUCCESS, message, null);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -48,7 +48,7 @@ public class ResponseUtil {
      * @param <T>     数据的类型。
      * @return 包含成功响应的ResponseEntity。
      */
-    public static <T> ResponseEntity<ApiResponse<T>> success(String message, T data) {
+    public static <T> ResponseEntity<BaseResponse> success(String message, T data) {
         ApiResponse<T> response = new ApiResponse<>(ResponseCode.SUCCESS, message, data);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -59,7 +59,7 @@ public class ResponseUtil {
      * @param bindingResult 包含验证错误的信息。
      * @return 包含验证错误响应的ResponseEntity。
      */
-    public static ResponseEntity<ValidationErrorResponse> validationError(BindingResult bindingResult) {
+    public static ResponseEntity<BaseResponse> validationError(BindingResult bindingResult) {
         List<ValidationErrorResponse.FieldError> errors = bindingResult.getFieldErrors().stream()
                 .map(fieldError -> new ValidationErrorResponse.FieldError(fieldError.getField(), fieldError.getDefaultMessage()))
                 .collect(Collectors.toList());

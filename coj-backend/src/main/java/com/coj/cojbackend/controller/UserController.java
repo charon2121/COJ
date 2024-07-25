@@ -45,7 +45,6 @@ public class UserController {
         // 使用 jackson 将 user 对象转换为 JSON 字符串
         return jsonString;
     }
-
     @HandleValidationErrors
     @PostMapping("/login")
     public ResponseEntity<BaseResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
@@ -56,7 +55,7 @@ public class UserController {
 
         System.out.println(user);
 
-//        return ResponseUtil.success(user);
-        return null;
+        return ResponseUtil.success(user);
     }
 }
+
