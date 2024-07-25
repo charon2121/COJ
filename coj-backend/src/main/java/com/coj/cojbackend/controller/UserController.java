@@ -2,11 +2,14 @@ package com.coj.cojbackend.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.coj.cojbackend.model.entity.User;
+import com.coj.cojbackend.model.request.user.loginRequest;
 import com.coj.cojbackend.service.user.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -39,8 +42,17 @@ public class UserController {
         return jsonString;
     }
 
-    @PostMapping("/user")
-    public String addUser(@RequestBody String username) {
+    /**
+     * 用户登录接口
+     *
+     * @param loginRequest
+     * @return
+     */
+    @PostMapping("/login")
+    public String authenticateUser(@Valid @RequestBody loginRequest loginRequest, BindingResult bindingResult) {
+
+
+
 
         return "user";
     }

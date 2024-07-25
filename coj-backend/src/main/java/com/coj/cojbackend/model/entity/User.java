@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.Data;
@@ -45,7 +46,7 @@ public class User implements Serializable {
      * 生日
      */
     @TableField(value = "birthday")
-    private Date birthday;
+    private LocalDate birthday;
 
     /**
      * 个人简介
