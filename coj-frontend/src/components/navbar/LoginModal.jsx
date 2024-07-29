@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, Modal, Segmented } from "antd";
+import { Button, Form, Input, Modal, Segmented } from "antd";
 
 function LoginModal({ open, onCancel, onOk }) {
   const [value, setValue] = useState("登录");
@@ -19,16 +19,17 @@ function LoginModal({ open, onCancel, onOk }) {
         />
       </div>
       <div style={{ paddingTop: 32, paddingLeft: 24, paddingRight: 24 }}>
-        <Form
-          style={{ marginTop: 32 }}
-          wrapperCol={{ span: 18, offset: 3 }}
-          layout={"vertical"}
-        >
+        <Form wrapperCol={{ span: 24 }} layout={"vertical"}>
           <Form.Item label={"用户名"} name={"username"}>
             <Input />
           </Form.Item>
           <Form.Item label={"密码"} name={"password"}>
             <Input />
+          </Form.Item>
+          <Form.Item>
+            <Button block type={"primary"}>
+              登录
+            </Button>
           </Form.Item>
         </Form>
       </div>

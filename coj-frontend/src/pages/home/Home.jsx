@@ -3,10 +3,10 @@ import Container from "../../components/container/Container";
 import LeftPane from "../../components/container/leftpane/LeftPane";
 import RightPane from "../../components/container/rightpane/RightPane";
 import Panel from "../../components/panel/Panel";
-import { Button, Carousel } from "antd";
-import axios from "axios";
+import { Carousel } from "antd";
 
 function Home(props) {
+
   const contentStyle = {
     margin: 0,
     height: "350px",
@@ -41,17 +41,6 @@ function Home(props) {
       </LeftPane>
       <RightPane>
         <Panel>
-          <Button
-            onClick={() => {
-              try {
-                axios.get("http://localhost:8080/api/longpoll", { timeout: 11000 });
-              } catch (e) {
-                console.log(e)
-              }
-            }}
-          >
-            点我点我
-          </Button>
         </Panel>
       </RightPane>
     </Container>

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* 清除浏览器默认样式 */
 * {
     box-sizing: border-box;
