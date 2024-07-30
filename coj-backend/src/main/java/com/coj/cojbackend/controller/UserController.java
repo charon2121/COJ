@@ -3,7 +3,7 @@ package com.coj.cojbackend.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.coj.cojbackend.annotation.HandleValidationErrors;
 import com.coj.cojbackend.model.entity.User;
-import com.coj.cojbackend.model.request.user.LoginRequest;
+import com.coj.cojbackend.model.request.user.LoginRequestBody;
 import com.coj.cojbackend.model.response.BaseResponse;
 import com.coj.cojbackend.service.user.UserService;
 import com.coj.cojbackend.utils.ResponseUtil;
@@ -17,19 +17,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @GetMapping("/user/{username}")
+    @GetMapping("/{username}")
     public String getUser(@PathVariable String username) {
 
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username", username);
         User user = userService.getOne(queryWrapper);
-
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
 
@@ -42,18 +41,17 @@ public class UserController {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        // 使用 jackson 将 user 对象转换为 JSON 字符串
         return jsonString;
     }
+
     @HandleValidationErrors
     @PostMapping("/login")
-    public ResponseEntity<BaseResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
+    public ResponseEntity<BaseResponse> authenticateUser(@Valid @RequestBody LoginRequestBody loginRequest, BindingResult bindingResult) {
 
         String username = loginRequest.getUsername();
 
+        // 用户登录功能
         User user = userService.getUserByUsername(username);
-
-        System.out.println(user);
 
         return ResponseUtil.success(user);
     }

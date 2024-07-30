@@ -6,11 +6,11 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class LoginRequest {
+public class LoginRequestBody {
 
     @NotNull(message = "username cannot be null")
     @NotEmpty(message = "username cannot be empty")
-    @Size(min = 6, max = 20, message = "username length must be between 6 and 20")
+    @Size(min = 3, max = 20, message = "username length must be between 2 and 20")
     private String username;
 
     @NotNull(message = "password cannot be null")

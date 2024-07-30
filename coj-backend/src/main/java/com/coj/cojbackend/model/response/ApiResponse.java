@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
  * ApiResponse 类用于封装 API 的响应结果。
  * @param <T> 响应数据的泛型类型，允许响应数据为任意类型。
  */
-// @EqualsAndHashCode(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class ApiResponse<T> extends BaseResponse {

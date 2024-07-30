@@ -1,2 +1,5 @@
-package com.coj.cojbackend.exception;public class GlobalExceptionHandler {
+package com.coj.cojbackend.exception;
+
+public class GlobalExceptionHandler {
+
 }
