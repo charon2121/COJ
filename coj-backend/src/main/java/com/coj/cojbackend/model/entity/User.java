@@ -8,7 +8,6 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import lombok.Data;
 
 /**
@@ -130,13 +129,13 @@ public class User implements Serializable {
      * 注册时间
      */
     @TableField(value = "register_time")
-    private Date registerTime;
+    private LocalDate registerTime;
 
     /**
      * 最后登陆时间
      */
     @TableField(value = "last_login")
-    private Date lastLogin;
+    private LocalDateTime lastLogin;
 
     /**
      * 最后登录IP
@@ -148,7 +147,7 @@ public class User implements Serializable {
      * 最后在线时间
      */
     @TableField(value = "last_online")
-    private Date lastOnline;
+    private LocalDateTime lastOnline;
 
     /**
      * 是否删除 0:未删除 1:已删除

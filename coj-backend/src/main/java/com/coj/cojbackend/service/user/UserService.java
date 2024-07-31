@@ -2,6 +2,7 @@ package com.coj.cojbackend.service.user;
 
 import com.coj.cojbackend.model.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.coj.cojbackend.model.response.BaseResponse;
 
 /**
 * @author charon
@@ -15,4 +16,10 @@ public interface UserService extends IService<User> {
      * @return 用户
      */
     User getUserByUsername(String username);
+
+    /**
+     * 根据用户名 + 密码进行登录
+     * @param username 用户名
+     */
+    BaseResponse userLogin(String username, String password);
 }

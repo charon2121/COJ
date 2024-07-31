@@ -27,7 +27,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => {
     // 处理响应数据
-    return response.data;
+    return response;
   },
   (error) => {
     // 处理响应错误

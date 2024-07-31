@@ -7,7 +7,7 @@ function LoginModal({ open, onCancel, onOk }) {
 
   return (
     <Modal open={open} onCancel={onCancel} onOk={onOk} footer={null}>
-      <div style={{ paddingTop: 32, paddingLeft: 24, paddingRight: 24 }}>
+      <div className={"pt-8 pl-6 pr-6"}>
         <Segmented
           options={["登录", "注册"]}
           value={value}
@@ -18,8 +18,13 @@ function LoginModal({ open, onCancel, onOk }) {
           block
         />
       </div>
-      <div style={{ paddingTop: 32, paddingLeft: 24, paddingRight: 24 }}>
-        <Form wrapperCol={{ span: 24 }} layout={"vertical"}>
+      <div className={"pt-8 pl-6 pr-6"}>
+        <Form
+          wrapperCol={{ span: 24 }}
+          layout={"vertical"}
+          onFinish={onOk}
+          autoComplete={"off"}
+        >
           <Form.Item label={"用户名"} name={"username"}>
             <Input />
           </Form.Item>
@@ -27,7 +32,7 @@ function LoginModal({ open, onCancel, onOk }) {
             <Input />
           </Form.Item>
           <Form.Item>
-            <Button block type={"primary"}>
+            <Button block type={"primary"} htmlType={"submit"}>
               登录
             </Button>
           </Form.Item>

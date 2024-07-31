@@ -11,13 +11,13 @@ public class SecurityConfigTest {
     SecurityConfig securityConfig;
     @Test
     public void test() {
-        var res = securityConfig.passwordEncoder().encode("md0oiImej__oieg");
+        var res = securityConfig.passwordEncoder().encode("tao072500");
         System.out.println(res);
     }
 
     @Test
     public void test2() {
-        String s = "$2a$10$gx20gC5nA8hJ1.jG/kC2geunUIfYUkmEGQBdw9ZLaO85ATzTkdZvS";
-        assert(securityConfig.passwordEncoder().matches("md0oiImej__oieg", s));
+        String s = "$2a$10$bVanvHaDg2rrQpPuFdNC9use7cGNRzUUlpcozpqlm/mHGYTruCjTm";
+        assert(securityConfig.passwordEncoder().matches("tao072500", s));
     }
 }

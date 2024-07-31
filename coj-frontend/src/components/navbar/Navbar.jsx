@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { loginFont } from "./style";
 import LoginModal from "./LoginModal";
 import { menuItems } from "./menuItems";
+import {userLogin} from "../../api/user";
 
 function Navbar() {
   const isLogin = useSelector((state) => state.user.isLogin);
@@ -80,6 +81,10 @@ function Navbar() {
           <LoginModal
             open={loginModalOpen}
             onCancel={() => setLoginModalOpen(false)}
+            onOk={async (value) => {
+              const { username, password } = value;
+              await userLogin(username, password)
+            }}
           />
         </Flex>
       )}

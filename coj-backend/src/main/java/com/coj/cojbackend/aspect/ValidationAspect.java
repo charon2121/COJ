@@ -16,7 +16,7 @@ public class ValidationAspect {
     public Object handleValidationErrors(ProceedingJoinPoint joinPoint, BindingResult bindingResult) throws Throwable {
 
         if (bindingResult.hasErrors()) {
-
+            log.error(bindingResult.getAllErrors());
             return ResponseUtil.validationError(bindingResult);
         }
 

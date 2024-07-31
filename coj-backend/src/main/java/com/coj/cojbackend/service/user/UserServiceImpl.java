@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.coj.cojbackend.model.entity.User;
 import com.coj.cojbackend.mapper.UserMapper;
+import com.coj.cojbackend.model.response.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username", username);
         return userMapper.selectOne(queryWrapper);
+    }
+
+    @Override
+    public BaseResponse userLogin(String username, String password) {
+        return null;
     }
 }
 

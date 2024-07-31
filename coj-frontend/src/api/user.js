@@ -2,5 +2,5 @@
 import { post } from "./axiosInstance";
 
 export function userLogin(username, password) {
-  return post("/user/login", { username, password });
+  return post("/api/user/login", { username, password });
 }
