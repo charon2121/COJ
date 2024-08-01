@@ -49,11 +49,11 @@ public class UserController {
     public ResponseEntity<BaseResponse> authenticateUser(@Valid @RequestBody LoginRequestBody loginRequest, BindingResult bindingResult) {
 
         String username = loginRequest.getUsername();
+        String password = loginRequest.getPassword();
 
-        // 用户登录功能
-        User user = userService.getUserByUsername(username);
+        userService.userLogin(username, password);
 
-        return ResponseUtil.success(user);
+        return null;
     }
 }
 

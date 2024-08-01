@@ -29,10 +29,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     @Override
     public BaseResponse userLogin(String username, String password) {
+        User user = getUserByUsername(username);
+        // 用户名不存在
         return null;
     }
 }
-
-
-
-

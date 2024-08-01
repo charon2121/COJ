@@ -2,102 +2,47 @@
 
 ## user 表
 
-### 表结构
-
-| 字段名              | 字段类型         | 是否为空 | 字段含义                                             |
-| ------------------- | ---------------- | -------- | ---------------------------------------------------- |
-| user_id             | BIGINT UNSIGNED  | 否       | 用户 ID，内部使用，对外不可见；使用雪花 ID           |
-| username            | CHAR(32)         | 否       | 用户名，对外展示，系统生成；不重复、不能修改、不为空 |
-| nickname            | VARCHAR(16)      | 否       | 用户昵称，对外展示使用，用户可修改                   |
-| gender              | TINYINT UNSIGNED | 否       | 性别 0:保密 1:男 2:女                                |
-| birthday            | DATE             |          | 用户生日                                             |
-| introduction        | VARCHAR(255)     |          | 个人简介                                             |
-| password_hash       | VARCHAR(255)     | 否       | 加密后的用户密码                                     |
-| school              | VARCHAR(32)      |          | 学校                                                 |
-| phone               | VARCHAR(16)      |          | 用户手机号                                           |
-| email               | VARCHAR(128)     |          | 用户邮箱                                             |
-| github              | VARCHAR(128)     |          | github地址                                           |
-| blog                | VARCHAR(255)     |          | 博客地址                                             |
-| avatar_url          | VARCHAR(255)     |          | 用户头像地址                                         |
-| permission          | VARCHAR(64)      | 否       | 用户权限字符串                                       |
-| status              | TINYINT UNSIGNED | 否       | 用户状态 0:正常 1:禁用                               |
-| preference_language | INT UNSIGNED     |          | 用户偏好语言，外键，对应了 language 表的 id          |
-| submit_count        | INT UNSIGNED     | 否       | 提交题目次数                                         |
-| solved_count        | INT UNSIGNED     | 否       | 解决题目数量                                         |
-| register_time       | DATETIME         |          | 注册时间                                             |
-| last_login          | DATETIME         |          | 最后登录时间                                         |
-| last_login_ip       | VARCHAR(64)      |          | 最后登录IP                                           |
-| last_online         | DATETIME         |          | 最后在线时间                                         |
-| is_deleted          | TINYINT UNSIGNED | 否       | 是否删除 0:未删除 1:已删除                           |
-| gmt_create          | DATETIME         | 否       | 创建时间                                             |
-| gmt_modified        | DATETIME         | 否       | 修改时间                                             |
-
-### 建表语句
-
-```sql
-DROP TABLE IF EXISTS `user`;
-
-CREATE TABLE `user` (
-    `user_id`  BIGINT UNSIGNED NOT NULL COMMENT '用户ID',
-    `username` CHAR(32) NOT NULL COMMENT '用户名',
-    `nickname` VARCHAR(16) NOT NULL DEFAULT '' COMMENT '用户昵称昵称',
-    `gender` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '性别 0:保密 1:男 2:女',
-    `birthday` DATE DEFAULT NULL COMMENT '生日',
-    `introduction` VARCHAR(255) DEFAULT NULL COMMENT '个人简介',
-    `password_hash` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '加密后的用户密码',
-    `school` VARCHAR(32) DEFAULT NULL COMMENT '学校',
-    `phone` VARCHAR(16) DEFAULT NULL COMMENT '用户手机号',
-    `email` VARCHAR(128) DEFAULT NULL COMMENT '用户邮箱',
-    `github` VARCHAR(128) DEFAULT NULL COMMENT 'github地址',
-    `blog` VARCHAR(255) DEFAULT NULL COMMENT '个人博客地址',
-    `avatar_url` VARCHAR(255) DEFAULT NULL COMMENT '用户头像地址',
-    `permission` VARCHAR(32) NOT NULL COMMENT '用户权限字符串',
-    `status` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '用户状态 0:正常 1:禁用',
-    `preference_language` INT UNSIGNED DEFAULT NULL COMMENT '用户偏好语言',
-    `submit_count` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '提交题目次数',
-    `solved_count` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '解决题目数量',
-    `register_time` DATETIME DEFAULT NULL COMMENT '注册时间',
-    `last_login` DATETIME DEFAULT NULL COMMENT '最后登陆时间',
-    `last_login_ip` VARCHAR(64) DEFAULT NULL COMMENT '最后登录IP',
-    `last_online` DATETIME DEFAULT NULL COMMENT '最后在线时间',
-    `is_deleted` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否删除 0:未删除 1:已删除',
-    `gmt_create` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `gmt_modified` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-    PRIMARY KEY (`user_id`),
-    UNIQUE KEY `unique_username` (`username`),
-    UNIQUE KEY `unique_email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
-```
+| 字段名              | 字段类型         | 是否为空 | 字段含义         | 备注                                 |
+| ------------------- | ---------------- | -------- | ---------------- | ------------------------------------ |
+| user_id             | BIGINT UNSIGNED  | 否       | 用户ID           | 内部使用，对外不可见；使用雪花 ID    |
+| username            | CHAR(32)         | 否       | 用户名           | 对外展示，系统生成；不重复、不能修改 |
+| nickname            | VARCHAR(16)      | 否       | 用户昵称         | 对外展示，用户使用，可修改           |
+| gender              | TINYINT UNSIGNED | 否       | 性别             | 0: 保密 1: 男 2: 女                  |
+| birthday            | DATE             |          | 用户生日         |                                      |
+| introduction        | VARCHAR(255)     |          | 个人简介         |                                      |
+| password_hash       | VARCHAR(255)     | 否       | 加密后的用户密码 |                                      |
+| school              | VARCHAR(32)      |          | 学校             |                                      |
+| company             | VARCHAR(32)      |          | 公司             |                                      |
+| phone               | VARCHAR(16)      |          | 用户手机号       |                                      |
+| email               | VARCHAR(128)     |          | 用户邮箱         |                                      |
+| github              | VARCHAR(128)     |          | github地址       |                                      |
+| blog                | VARCHAR(255)     |          | 博客地址         |                                      |
+| avatar_url          | VARCHAR(255)     |          | 用户头像地址     |                                      |
+| permission          | VARCHAR(64)      | 否       | 用户权限字符串   |                                      |
+| is_defunct          | TINYINT UNSIGNED | 否       | 用户是否被封禁   | 0: 正常 1: 已封禁                    |
+| preference_language | INT UNSIGNED     |          | 用户偏好语言     | 外键，对应了 language 表的 id        |
+| submit_count        | INT UNSIGNED     | 否       | 提交题目次数     |                                      |
+| solved_count        | INT UNSIGNED     | 否       | 解决题目数量     |                                      |
+| register_time       | DATETIME         |          | 注册时间         |                                      |
+| last_login          | DATETIME         |          | 最后登录时间     |                                      |
+| last_login_ip       | VARCHAR(64)      |          | 最后登录IP       |                                      |
+| last_online         | DATETIME         |          | 最后在线时间     |                                      |
+| is_deleted          | TINYINT UNSIGNED | 否       | 是否删除         | 0: 未删除 1: 已删除                  |
+| gmt_create          | DATETIME         | 否       | 创建时间         |                                      |
+| gmt_modified        | DATETIME         | 否       | 修改时间         |                                      |
 
 ## 代码表
 
 系统中有很多的代码需要存储。
 
-| 字段名       | 字段类型         | 是否允许为空 | 字段含义                   |
-| ------------ | ---------------- | ------------ | -------------------------- |
-| code_id      | INT UNSIGNED     | 否           | 代码ID                     |
-| language_id  | INT UNSIGNED     | 否           | 语言ID                     |
-| code_content | TEXT             | 否           | 代码内容                   |
-| is_deleted   | TINYINT UNSIGNED | 否           | 是否删除 0:未删除 1:已删除 |
-| gmt_create   | DATETIME         | 否           | 创建时间                   |
-| gmt_modified | DATETIME         | 否           | 修改时间                   |
-
-
-### 建表语句
-
-```sql
-DROP TABLE IF EXISTS `code`;
-
-CREATE TABLE `code` (
-    `code_id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '代码ID',
-    `language_id` INT UNSIGNED NOT NULL COMMENT '语言ID',
-    `code_content` TEXT NOT NULL COMMENT '代码内容',
-    `is_deleted` TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否删除',
-    `gmt_create` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `gmt_modified` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-    PRIMARY KEY (`code_id`),
-);
-```
+| 字段名       | 字段类型         | 是否为空 | 字段含义 | 备注              |
+| ------------ | ---------------- | -------- | -------- | ----------------- |
+| code_id      | INT UNSIGNED     | 否       | 代码ID   |                   |
+| language_id  | INT UNSIGNED     | 否       | 语言ID   |                   |
+| code_content | TEXT             | 否       | 代码内容 |                   |
+| is_deleted   | TINYINT UNSIGNED | 否       | 是否删除 | 0:未删除 1:已删除 |
+| gmt_create   | DATETIME         | 否       | 创建时间 |                   |
+| gmt_modified | DATETIME         | 否       | 修改时间 |                   |
 
 ## 题目表
 
@@ -131,29 +76,29 @@ ACM 模式的 description 划分完毕了之后。
 
 ### 表格
 
-| 字段名         | 字段类型         | 字段含义                                                      |
-| -------------- | ---------------- | ------------------------------------------------------------- |
-| problem_id     | INT UNSIGNED     | 主键，题目 ID                                                 |
-| title          | VARCHAR(255)     | 题目标题                                                      |
-| slug           | VARCHAR(512)     | 题目标识，用于创建友好链接，用于反爬虫                        |
-| description    | TEXT             | 题目描述，包含输入描述和输出描述                              |
-| author         | BIGINT UNSIGNED  | 外键，题目作者 ID，                                           |
-| is_spj         | TINYINT UNSIGNED | 特殊判题，枚举值，0：不是，1：是                              |
-| mode           | TINYINT UNSIGNED | 题目类型，枚举值，0：ACM 模式，1：核心代码模式                |
-| difficulty     | TINYINT UNSIGNED | 题目难度，枚举值，0：入门，1：简单，2：中等，3：困难，4：极难 |
-| status         | TINYINT UNSIGNED | 题目状态，枚举值，0：内测中，1：已发布，2：已废弃             |
-| scene          | TINYINT UNSIGNED | 题目场景，枚举值，0：全站使用，其余场景自定义                 |
-| scene_id       | INT UNSIGNED     | 题目场景 ID，题目出现的场景 ID                                |
-| tags           | VARCHAR(512)     | 题目标签，字符串数组，存储 tags 表中的主键                    |
-| hints          | TEXT             | 题目提示，字符串数组，用于存储题目的提示，可能会有多个        |
-| spj_code_id    | INT UNSIGNED     | 特殊判题代码，用于特殊判题的题目                              |
-| test_code_id   | INT UNSIGNED     | 测试代码，用于生成测试用例                                    |
-| check_code_id  | INT UNSIGNED     | 检查代码，用于检查测试代码生成的测试用例是否符合要求          |
-| submit_count   | INT UNSIGNED     | 题目提交次数                                                  |
-| accepted_count | INT UNSIGNED     | 题目通过次数                                                  |
-| is_deleted     | TINYINT UNSIGNED | 是否删除，枚举值，0：未删除 1：已删除                         |
-| gmt_create     | DATETIME         | 创建时间                                                      |
-| gmt_modified   | DATETIME         | 修改时间                                                      |
+| 字段名         | 字段类型         | 是否为空 | 字段含义      | 备注                                                |
+| -------------- | ---------------- | -------- | ------------- | --------------------------------------------------- |
+| problem_id     | INT UNSIGNED     | 否       | 主键，题目 ID |                                                     |
+| title          | VARCHAR(255)     | 否       | 题目标题      |                                                     |
+| slug           | VARCHAR(512)     | 否       | 题目标识      | 用于创建友好链接，同时也用于反爬虫                  |
+| description    | TEXT             | 否       | 题目描述      | 包含输入描述和输出描述                              |
+| is_spj         | TINYINT UNSIGNED | 否       | 特殊判题      | 枚举值，0：不是，1：是                              |
+| mode           | TINYINT UNSIGNED | 否       | 题目类型      | 枚举值，0：ACM 模式，1：核心代码模式                |
+| difficulty     | TINYINT UNSIGNED | 否       | 题目难度      | 枚举值，0：入门，1：简单，2：中等，3：困难，4：极难 |
+| status         | TINYINT UNSIGNED | 否       | 题目状态      | 枚举值，0：内测中，1：已发布，2：已废弃             |
+| scene          | TINYINT UNSIGNED | 否       | 题目场景      | 枚举值，0：全站使用，其余场景自定义                 |
+| scene_id       | INT UNSIGNED     |          | 题目场景 ID   | 题目出现的场景 ID                                   |
+| tags           | VARCHAR(512)     |          | 题目标签      | 字符串数组，存储 tags 表中的主键                    |
+| hints          | TEXT             |          | 题目提示      | 字符串数组，用于存储题目的提示，可能会有多个        |
+| test_data_path | VARCHAR(512)     |          | 测试数据路径  | 用于存储测试数据的路径                              |
+| spj_code_id    | INT UNSIGNED     |          | 特殊判题代码  | 外键，用于特殊判题的题目                            |
+| test_code_id   | INT UNSIGNED     |          | 测试用例代码  | 外键，用于生成测试用例                              |
+| check_code_id  | INT UNSIGNED     |          | 检查用例代码  | 外键，用于检查测试代码生成的测试用例是否符合要求    |
+| submit_count   | INT UNSIGNED     |          | 题目提交次数  |                                                     |
+| accepted_count | INT UNSIGNED     |          | 题目通过次数  |                                                     |
+| is_deleted     | TINYINT UNSIGNED | 否       | 是否删除      | 枚举值，0：未删除 1：已删除                         |
+| gmt_create     | DATETIME         | 否       | 创建时间      |                                                     |
+| gmt_modified   | DATETIME         | 否       | 修改时间      |                                                     |
 
 注释：
 
@@ -244,10 +189,10 @@ CREATE TABLE `problem` (
 ### 建表语句
 
 ```sql
-DROP TABLE IF EXISTS `problem_sample_io`;
+DROP TABLE IF EXISTS `test_case`;
 
-CREATE TABLE `problem_sample_io` (
-    `problem_sample_io_id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键，样例输入输出 ID',
+CREATE TABLE `test_case` (
+    `test_case_id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键，样例输入输出 ID',
     `problem_id` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '题目 ID',
     `sample_input` TEXT NOT NULL DEFAULT '' COMMENT '样例输入',
     `sample_output` TEXT NOT NULL DEFAULT '' COMMENT '样例输出',
@@ -304,7 +249,6 @@ CREATE TABLE `language` (
 | problem_language_id | INT UNSIGNED     | 主键，语言题目 ID                      |
 | problem_id          | INT UNSIGNED     | 外键，题目 ID                          |
 | language_id         | INT UNSIGNED     | 外键，语言 ID                          |
-| template_code_id    | INT UNSIGNED     | 题目模版代码，用于核心代码模式的题目   |
 | limit_code_id       | INT UNSIGNED     | 限制代码，用于生成时间和空间限制的代码 |
 | standard_code_id    | INT UNSIGNED     | 标准代码，用户生成正确输出的代码       |
 | time_limit          | INT UNSIGNED     | 时间限制                               |
